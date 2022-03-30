@@ -1,0 +1,28 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'css/about_univ.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block page %}
+<section>
+  <div class="container_1">
+    <iframe src="https://www.youtube.com/embed/eIfY0oj14iU?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class = "links-intro">Полезные ссылки</div>
+    <div class = "links">
+      <p><a href="https://www.ucheba.ru/uz/5860">https://www.ucheba.ru/uz/5860</a></p>
+      <p><a href="https://www.miet.ru">https://www.miet.ru</a></p>
+      <p><a href="https://www.miet.ru/special/partners">https://www.miet.ru/special/partners</a></p>
+    </div>
+  </div>
+  <div class=container_text>
+    <div class = "miet_text"> <b>Миэт</b>
+        <div class = "natreseacharuniv"></div>
+        <p></p>Национальный</p> <p>Исследовательский</p> <p>Университет</p>
+    </div>
+    <p><b>Национа́льный иссле́довательский университе́т «Моско́вский институ́т электро́нной те́хники» (МИЭТ)</b> — российский технический университет в области электроники, информационных и компьютерных технологий, один из 29 национальных исследовательских университетов. Основан в 1965 году; территориально расположен в Зеленограде. </p>
+    <p>МИЭТ является ведущим вузом России в области электроники, нанотехнологий, IT, телекоммуникаций, а также расследования киберпреступлений, менеджмента, лингвистики и дизайна. Отличное качество подготовки студентов обеспечивается хорошей лабораторной базой и современным форматом обучения. Среди преподавателей - члены Российской академии наук, более 100 докторов наук, более 300 кандидатов наук. Вуз расположен в Зеленограде - самом экологически чистом округе Москвы, который называют Силиконовой долиной России.</p>
+  </div>
+</section>
+{% endblock %}
