@@ -1,0 +1,83 @@
+<!-- TODO: Change links!!! -->
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/header.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800" rel="stylesheet">
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <!--Header-->
+    {% block header %}
+    <header>
+      <div class="container">
+        <div class="nav">
+          <img class="logo" src="{% static 'img/miet_logo.png' %}"  width="65" height="65">
+
+          <ul class="menu">
+            <li>
+              <a href="/">Главная</a>
+            </li>
+            <li>
+              <img src="{% static 'img/atom_full_density.png' %}" width="25" height="25" >
+            </li>
+            <li>
+              <a href="">О проекте</a>
+            </li>
+            <li>
+              <img src="{% static 'img/atom_full_density.png' %}" width="25" height="25" >
+            </li>
+            <li>
+              <a href="directions_page.html">Направления</a>
+            </li>
+            <li>
+              <img src="{% static 'img/atom_full_density.png' %}" width="25" height="25" >
+            </li>
+            <li>
+              <a href="{% url 'about_univ' %}">Об университете</a>
+            </li>
+          </ul>
+        </div>
+
+        <!--Login-->
+        <div class="login">
+          <div class="circle"></div>
+          <!--TODO: javascript drop menu-->
+          <a href="login.html">Вход</a>
+        </div>
+      </div>
+       <!--Login end-->
+    </header>
+    <!--Header end-->
+    {% endblock %}
+
+    {% block page %}
+    {% endblock %}
+
+    {% block footer %}
+    <footer class = "outro">
+      <div class = "container_authors">
+        <img class="logo" src="{% static 'img/miet_logo.png' %}"  width="70" height="70">
+        <div class = "outro_text">
+          <p> Авторы: студенты группы ПИН-24 и РТ-21 </p>
+            <div class = "authors"> Иванов Матвей Андреевич <a
+                href="https://vk.com/ironmatvik">VK</a> </div>
+            <div class = "authors"> Смирнов Егор Романович  <a
+                href="https://vk.com/wieldll">VK</a></div>
+            <div class = "authors"> Коротков Арсений Александрович <a href =
+                "https://vk.com/typo_bexa">VK</a></div>
+        </div>
+      </div>
+      <a class="anchor" href="#top">Наверх</a>
+    </footer>
+    {% endblock %}
+  </body>
+</html>
