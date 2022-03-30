@@ -7,3 +7,7 @@ def index(request):
 
 def univ_info(request):
     return render(request, 'website/about_univ.html')
+
+
+def project_info(request):
+    return render(request, 'website/about_project.html')

@@ -24,13 +24,13 @@
 
           <ul class="menu">
             <li>
-              <a href="/">Главная</a>
+              <a href="{% url 'main_page' %}">Главная</a>
             </li>
             <li>
               <img src="{% static 'img/atom_full_density.png' %}" width="25" height="25" >
             </li>
             <li>
-              <a href="">О проекте</a>
+              <a href="{% url 'project_info' %}">О проекте</a>
             </li>
             <li>
               <img src="{% static 'img/atom_full_density.png' %}" width="25" height="25" >
