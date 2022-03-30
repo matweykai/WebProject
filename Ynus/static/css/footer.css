@@ -1,0 +1,42 @@
+/*Outro*/
+.outro{
+  background: #B6E0FF;
+  height: 150px;
+  font-size: 18px;
+  font-family: 'Montserrat';
+  display: flex;
+  align-items: center;
+}
+
+.container_authors{
+  display: flex;
+  align-items: center;
+  margin-left: 100px;
+}
+
+.outro_text{
+  margin-left: 50px;
+}
+
+.outro p{
+  font-weight: bold;
+}
+
+.authors{
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 70px;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+}
+
+.anchor {
+  text-decoration: none;
+  color: #000;
+  margin-left: auto;
+  margin-right: 10%;
+  transition-duration: 1s;
+}
