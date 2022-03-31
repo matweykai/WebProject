@@ -58,14 +58,14 @@ a {
 }
 
 
-.pin {
+.purple_grad {
   background: linear-gradient(180deg, #1B00C4 61.46%, rgba(0, 121, 196, 0) 100%);
 }
 
-.rt {
+.green_grad {
   background: linear-gradient(180deg, #00B8C4 60.42%, rgba(0, 121, 196, 0) 100%);
 }
 
-.infocom {
+.blue_grad {
   background: linear-gradient(180deg, #015FED 65.62%, rgba(0, 124, 194, 0) 100%);
 }
