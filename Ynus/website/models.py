@@ -38,3 +38,6 @@ class DisciplineVote(models.Model):
 class VoteCompany(models.Model):
     vote = models.ForeignKey(DisciplineVote, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.vote}-{self.company}'

@@ -31,3 +31,20 @@ def directions_view(request):
                'directions': directions}
 
     return render(request, 'website/directions.html', context=context)
+
+
+class DirectionView(generic.DetailView):
+    model = Direction
+    template_name = "website/direction_page.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        all_voted_companies = list()
+
+        for discipline_vote in self.get_object().disciplinevote_set.all():
+            for vote_company in discipline_vote.votecompany_set.all():
+                all_voted_companies.append(vote_company.company.user.username)
+
+        context['unique_votes_count'] = len(set(all_voted_companies))
+        return context

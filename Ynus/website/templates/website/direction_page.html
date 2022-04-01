@@ -1,0 +1,49 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% load divide %}
+
+{% block head %}
+    <link href="{% static 'css/direction_page.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block page %}
+    <div class = "full_container">
+      <div class="direction">
+          <img src="{% get_static_prefix %}img/{{ direction.img_path }}">
+        <div class="name">{{ direction.name }}</div>
+      </div>
+      <div class = "intro_text">{{ direction.description }}</div>
+      <div class = "dc_and_comp">
+        <div class="disciplines"> Дисциплины, изучаемые на данном направлении: </div>
+        <div class="companies"> Компании </div>
+      </div>
+      {% for discipline_vote in direction.disciplinevote_set.all %}
+          <div class = "container_block">
+            <div class = "subject_block"> <p>{{ discipline_vote.discipline.name }}</p>
+                <div class="percents">{{ discipline_vote.votecompany_set.all|length|divide:unique_votes_count }}%</div>
+            </div>
+            <div class = "companies_block">
+<!--TODO: company list-->
+                <select>
+                    {% for vote_company in discipline_vote.votecompany_set.all %}
+                        <option>{{ vote_company.company.user.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+          </div>
+      {% endfor %}
+
+
+
+
+<!--        <div class = "container_block">-->
+<!--          <div class = "subject_block"> <p>Алгоритмы и структуры данных</p> <div class =             "percents">95%</div>-->
+<!--          </div>-->
+<!--            <div class = "companies_block">Яндекс <div class = "triangle"></div></div>-->
+<!--        </div>-->
+<!--        <div class = "container_block">-->
+<!--            <div class = "subject_block"> <p>Теория вероятностей и математическая статистика</p> <div class =             "percents">30%</div></div>-->
+<!--            <div class = "companies_block">Касперский <div class = "triangle"></div></div>-->
+<!--        </div>-->
+    </div>
+{% endblock %}

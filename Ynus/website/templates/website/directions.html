@@ -11,74 +11,22 @@
 <section>
     {% for direction in directions %}
 
-        {% if forloop.counter|divisibleby:"3" %}
+        {% if forloop.counter0|divisibleby:"3" %}
+            {% if forloop.counter0 != 0%}
+                </div>
+            {% endif %}
             <div class="dir_box_row">
         {% endif %}
         <div class="dir_box {{ gradient_lst|index:forloop.counter0 }}">
-          <a href="#">
-            <img src="{% static '{{ direction.img_path }}'">
+          <a href="{% url 'direction_page' direction.pk %}">
+            <img src="{% get_static_prefix %}img/{{ direction.img_path }}">
           </a>
           <div class="dir_name">
-            <a href=#>{{ direction.name }}</a>
+            <a href="{% url 'direction_page' direction.pk %}">{{ direction.name }}</a>
           </div>
         </div>
-        {% if forloop.counter|divisibleby:"3" %}
-            </div>
-        {% endif %}
     {% endfor %}
-<!--  <div class="dir_box_row">-->
-<!--    <div class="dir_box pin">-->
-<!--      <a href="#">-->
-<!--        <img src="{% static 'img/software_engeeniring.jpg">-->
-<!--      </a>-->
-<!--      <div class="dir_name">-->
-<!--        <a href="pin.html">Программная инженерия</a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="dir_box rt">-->
-<!--      <a href="#">-->
-<!--        <img src="img/radio_technics.jpg">-->
-<!--      </a>-->
-<!--      <div class="dir_name">-->
-<!--        <a href="#">Радиотехника</a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="dir_box infocom">-->
-<!--      <a href="#">-->
-<!--        <img src="img/communications.jpg">-->
-<!--      </a>-->
-<!--      <div class="dir_name">-->
-<!--        <a href="#">Инфокоммуникационные технологии и системы связи</a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="dir_box_row">-->
-<!--    <div class="dir_box infocom">-->
-<!--      <a href="#">-->
-<!--        <img src="img/communications.jpg">-->
-<!--      </a>-->
-
-<!--      <div class="dir_name">-->
-<!--        <a href="#">Инфокоммуникационные технологии и системы связи</a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="dir_box pin">-->
-<!--      <a href="#">-->
-<!--        <img src="img/software_engeeniring.jpg">-->
-<!--      </a>-->
-<!--      <div class="dir_name">-->
-<!--        <a href="#">Программная инженерия</a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="dir_box rt">-->
-<!--      <a href="#">-->
-<!--        <img src="img/radio_technics.jpg">-->
-<!--      </a>-->
-<!--      <div class="dir_name">-->
-<!--        <a href="#">Радиотехника</a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
+            </div>
 </section>
 {% endblock %}
 

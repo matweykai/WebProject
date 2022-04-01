@@ -2,7 +2,7 @@
   height: 2500px;
 }
 
-.pin img {
+.direction img {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   height: 76%;
@@ -20,7 +20,7 @@
   font-size: 28px;
 }
 
-.pin{
+.direction{
   font-family: 'Montserrat';
   width: 25%;
   height: 376px;
