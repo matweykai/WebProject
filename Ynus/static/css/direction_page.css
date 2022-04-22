@@ -115,6 +115,7 @@
   display:flex;
   justify-content: space-between;
   text-transform: uppercase;
+  align-items:center;
   color:white;
   font-size: 35px;
   background: #83ADDE;
@@ -130,28 +131,23 @@
 
 select {
     font-weight: 500;
-    font-size: 35px;
+    font-size: 50px;
     font-family: 'Montserrat';
     color: #FFFFFF;
     text-transform: uppercase;
-    display: inline-block;
     text-align: center;
     align-items: center;
     background-color: #83ADDE;
-    margin: auto;
     outline: none;
+    margin: auto;
     border-color: #83ADDE;
-    line-height: inherit;
-    display: grid;
     cursor: pointer;
     appearance: none;
 }
 
-/*.select:after {
-    content: "";
-    background-color:#1B3555;
-    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-    width: 0.8em;
-    height: 0.5em;
-}*/
+option {
+border-color: #83ADDE;
+background-color: #83ADDE;
+color: #FFFFFF;
+}
 
