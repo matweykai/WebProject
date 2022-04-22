@@ -127,11 +127,31 @@
   width:15.5%;
   margin-top:1%; 
 }
-.triangle{
-  width: 0px;
-	height: 0px;
-	border-left: 43px solid transparent;
-	border-right: 43px solid transparent;
-	border-top: 33px solid #1B3555;
-  float: right;
+
+select {
+    font-weight: 500;
+    font-size: 35px;
+    font-family: 'Montserrat';
+    color: #FFFFFF;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    background-color: #83ADDE;
+    margin: auto;
+    outline: none;
+    border-color: #83ADDE;
+    line-height: inherit;
+    display: grid;
+    cursor: pointer;
+    appearance: none;
 }
+
+/*.select:after {
+    content: "";
+    background-color:#1B3555;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    width: 0.8em;
+    height: 0.5em;
+}*/
+

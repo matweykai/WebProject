@@ -22,14 +22,13 @@
             <div class = "subject_block"> <p>{{ discipline_vote.discipline.name }}</p>
                 <div class="percents">{{ discipline_vote.votecompany_set.all|length|divide:unique_votes_count }}%</div>
             </div>
-            <div class = "companies_block">
-<!--TODO: company list-->
+            <nav class = "companies_block">
                 <select>
                     {% for vote_company in discipline_vote.votecompany_set.all %}
                         <option>{{ vote_company.company.user.username }}</option>
                     {% endfor %}
                 </select>
-            </div>
+            </nav>
           </div>
       {% endfor %}
 
