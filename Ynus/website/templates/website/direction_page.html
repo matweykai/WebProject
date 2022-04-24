@@ -17,33 +17,19 @@
         <div class="disciplines"> Дисциплины, изучаемые на данном направлении: </div>
         <div class="companies"> Компании </div>
       </div>
-      {% for discipline_vote in direction.disciplinevote_set.all %}
+      {% for discipline in direction.disciplines.all %}
           <div class = "container_block">
-            <div class = "subject_block"> <p>{{ discipline_vote.discipline.name }}</p>
-                <div class="percents">{{ discipline_vote.votecompany_set.all|length|divide:unique_votes_count }}%</div>
+            <div class = "subject_block"> <p>{{ discipline.name }}</p>
+                <div class="percents">{{ discipline.vote_set.all|length|divide:unique_votes_count }}%</div>
             </div>
             <div class = "companies_block">
-<!--TODO: company list-->
                 <select>
-                    {% for vote_company in discipline_vote.votecompany_set.all %}
-                        <option>{{ vote_company.company.user.username }}</option>
+                    {% for vote in discipline.vote_set.all %}
+                        <option>{{ vote.company.user.username }}</option>
                     {% endfor %}
                 </select>
             </div>
           </div>
       {% endfor %}
-
-
-
-
-<!--        <div class = "container_block">-->
-<!--          <div class = "subject_block"> <p>Алгоритмы и структуры данных</p> <div class =             "percents">95%</div>-->
-<!--          </div>-->
-<!--            <div class = "companies_block">Яндекс <div class = "triangle"></div></div>-->
-<!--        </div>-->
-<!--        <div class = "container_block">-->
-<!--            <div class = "subject_block"> <p>Теория вероятностей и математическая статистика</p> <div class =             "percents">30%</div></div>-->
-<!--            <div class = "companies_block">Касперский <div class = "triangle"></div></div>-->
-<!--        </div>-->
     </div>
 {% endblock %}
