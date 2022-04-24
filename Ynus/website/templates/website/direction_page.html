@@ -9,7 +9,7 @@
 {% block page %}
     <div class = "full_container">
       <div class="direction">
-          <img src="{% get_static_prefix %}img/{{ direction.img_path }}">
+          <img src="{{ direction.img.url }}">
         <div class="name">{{ direction.name }}</div>
       </div>
       <div class = "intro_text">{{ direction.description }}</div>

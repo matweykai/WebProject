@@ -24,7 +24,7 @@ class Direction(models.Model):
     """Represents direction (education programs) in database"""
     name = models.CharField(max_length=50)
     description = models.TextField()
-    img_path = models.TextField()
+    img = models.ImageField(upload_to='direction_imgs/')
     disciplines = models.ManyToManyField(Discipline)
 
     def __str__(self):

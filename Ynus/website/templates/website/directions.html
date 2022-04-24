@@ -19,7 +19,7 @@
         {% endif %}
         <div class="dir_box {{ gradient_lst|index:forloop.counter0 }}">
           <a href="{% url 'direction_page' direction.pk %}">
-            <img src="{% get_static_prefix %}img/{{ direction.img_path }}">
+            <img src="{{ direction.img.url }}">
           </a>
           <div class="dir_name">
             <a href="{% url 'direction_page' direction.pk %}">{{ direction.name }}</a>
