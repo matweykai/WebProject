@@ -111,7 +111,7 @@
   padding: 30px 150px 30px 80px;
   margin-left:80%;
 }
-.companies_block{
+/*.companies_block{
   display:flex;
   justify-content: space-between;
   text-transform: uppercase;
@@ -127,12 +127,15 @@
   font-weight: 500;
   width:15.5%;
   margin-top:1%; 
-}
+}*/
 
 select {
     font-weight: 500;
     font-size: 50px;
     font-family: 'Montserrat';
+    width: 520px;
+    height: 235px;
+    border-radius: 20px;
     color: #FFFFFF;
     text-transform: uppercase;
     text-align: center;
@@ -140,14 +143,17 @@ select {
     background-color: #83ADDE;
     outline: none;
     margin: auto;
+    margin-top:1%;
+    margin-left: 3%;
     border-color: #83ADDE;
     cursor: pointer;
     appearance: none;
 }
 
 option {
-border-color: #83ADDE;
-background-color: #83ADDE;
-color: #FFFFFF;
+    border-color: #83ADDE;
+    background-color: #83ADDE;
+    color: #FFFFFF;
+    border-radius: 20px;
 }
 
