@@ -4,6 +4,7 @@
 
 {% block head %}
     <link href="{% static 'css/direction_page.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/atom_full_density.png' %}"/>
     <title>{{ direction.description }}</title>
 {% endblock %}
 
@@ -20,13 +21,13 @@
       </div>
       {% for discipline_vote in direction.disciplinevote_set.all %}
           <div class = "container_block">
-            <div class = "subject_block"> <p>{{ discipline_vote.discipline.name }}</p>
-                <div class="percents">{{ discipline_vote.votecompany_set.all|length|divide:unique_votes_count }}%</div>
-            </div>
-                <select>
-                    {% for vote_company in discipline_vote.votecompany_set.all %}
-                        <option>{{ vote_company.company.user.username }}</option>
-                    {% endfor %}
+              <div class = "subject_block"> <p>{{ discipline_vote.discipline.name }}</p>
+                    <div class="percents">{{ discipline_vote.votecompany_set.all|length|divide:unique_votes_count }}%</div>
+                </div>
+                    <select>
+                        {% for vote_company in discipline_vote.votecompany_set.all %}
+                            <option>{{ vote_company.company.user.username }}</option>
+                        {% endfor %}
                 </select>
           </div>
       {% endfor %}
