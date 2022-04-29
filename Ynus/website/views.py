@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from .models import Direction
+from .forms import CompanySignUpForm, CompanySignInForm
+from django.urls import reverse_lazy
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
 
 
 def index(request):
@@ -52,3 +56,26 @@ class DirectionView(generic.DetailView):
 
         context['unique_votes_count'] = len(set(all_voted_companies))
         return context
+
+
+class SignUpView(generic.CreateView):
+    """View for user registration"""
+    form_class = CompanySignUpForm
+    template_name = 'website/registration.html'
+    success_url = reverse_lazy('main_page')
+
+
+class SignInView(LoginView):
+    """View for user authentification"""
+    form_class = CompanySignInForm
+    template_name = 'website/authorization.html'
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse_lazy('main_page')
+
+
+def logout_user(request):
+    """View for user logging out"""
+    logout(request)
+
+    return redirect('main_page')

@@ -1,0 +1,36 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block head %}
+     <link href="{% static 'css/registration.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header %}
+    <header>
+        <div class="nav">
+            <a href="{% url 'main_page' %}"><img class="logo" src="{% static 'img/miet_logo.png' %}" width="65" height="65"></a>
+        </div>
+    </header>
+{% endblock %}
+
+
+{% block page %}
+    <section>
+        <form method="post" name="reg_form" class="reg_form">
+            {% csrf_token %}
+            <img class="owl_logo" src="{% static 'img/miet_owl.png' %}" width=168px height=150px>
+            {% for field in form %}
+                {{ field }}
+            {% endfor %}
+            <input class="reg_button" type="submit" value="Зарегистрироваться">
+            <div class="signin_button">
+                <a href="{% url 'signin' %}">Войти</a>
+            </div>
+        </form>
+    </section>
+    <script src="{% static 'js/validation_ent.js' %}"></script>
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}
