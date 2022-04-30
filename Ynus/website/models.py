@@ -51,4 +51,4 @@ class Vote(models.Model):
     direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.company.username}->{self.discipline.name}({self.direction.name})'
+        return f'{self.company.user.username}->{self.discipline.name}({self.direction.name})'

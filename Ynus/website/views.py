@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views import generic
 from .models import Direction
@@ -48,6 +49,14 @@ class DirectionView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            try:
+                votes = self.request.user.company.vote_set.all()
+                disciplines = [vote.discipline for vote in votes]
+                context["votes"] = disciplines
+
+            except User.company.RelatedObjectDoesNotExist:
+                pass
 
         all_voted_companies = list()
         # Counting all votes in this direction

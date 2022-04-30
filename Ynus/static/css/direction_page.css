@@ -135,3 +135,11 @@
 	border-top: 33px solid #1B3555;
   float: right;
 }
+
+.vote_field {
+  border-radius: 20px;
+  color:white;
+  background: #4382CD;
+  text-align: center;
+  margin-left:3%;
+}
