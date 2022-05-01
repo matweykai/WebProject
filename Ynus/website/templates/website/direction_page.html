@@ -8,11 +8,15 @@
 
 {% block page %}
     <div class = "full_container">
-        <div class="direction">
-            <img src="{{ direction.img.url }}">
-            <div class="name">{{ direction.name }}</div>
+        <div class="description">
+            <div class="direction">
+                <img src="{{ direction.img.url }}">
+                <div class="name">{{ direction.name }}</div>
+            </div>
+            <div class = "intro_text">
+                <p>{{ direction.description }}</p>
+            </div>
         </div>
-        <div class = "intro_text">{{ direction.description }}</div>
         <div class = "dc_and_comp">
             <div class="disciplines"> Дисциплины, изучаемые на данном направлении: </div>
             <div class="companies"> Компании </div>
@@ -40,7 +44,7 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
+    </div>>
     <script>
         let votes_url = "http://127.0.0.1:8000/api/votes";
         let companies_url = "http://127.0.0.1:8000/api/votes/companies";
