@@ -8,42 +8,140 @@
 
 {% block page %}
     <div class = "full_container">
-      <div class="direction">
-          <img src="{% get_static_prefix %}img/{{ direction.img_path }}">
-        <div class="name">{{ direction.name }}</div>
-      </div>
-      <div class = "intro_text">{{ direction.description }}</div>
-      <div class = "dc_and_comp">
-        <div class="disciplines"> Дисциплины, изучаемые на данном направлении: </div>
-        <div class="companies"> Компании </div>
-      </div>
-      {% for discipline_vote in direction.disciplinevote_set.all %}
-          <div class = "container_block">
-            <div class = "subject_block"> <p>{{ discipline_vote.discipline.name }}</p>
-                <div class="percents">{{ discipline_vote.votecompany_set.all|length|divide:unique_votes_count }}%</div>
+        <div class="description">
+            <div class="direction">
+                <img src="{{ direction.img.url }}">
+                <div class="name">{{ direction.name }}</div>
             </div>
-            <div class = "companies_block">
-<!--TODO: company list-->
-                <select>
-                    {% for vote_company in discipline_vote.votecompany_set.all %}
-                        <option>{{ vote_company.company.user.username }}</option>
-                    {% endfor %}
-                </select>
+            <div class = "intro_text">
+                <p>{{ direction.description }}</p>
             </div>
-          </div>
-      {% endfor %}
+        </div>
+        <div class = "dc_and_comp">
+            <div class="disciplines"> Дисциплины, изучаемые на данном направлении: </div>
+            <div class="companies"> Компании </div>
+        </div>
+        {% for discipline in direction.disciplines.all %}
+            <div class = "container_block">
+                <div class = "subject_block"> <p>{{ discipline.name }}</p>
+                    <div id="discp_{{ discipline.pk }}" class="percents">{{ discipline.vote_set.all|length|divide:unique_votes_count }}%</div>
+                    {% if user.is_authenticated %}
+                        <div class="vote_field">
+                            <input type="checkbox" id="{{ discipline.name }}_box"
+                            {% if discipline in votes %}
+                            checked
+                            {% endif %}
+                            >
+                        </div>
+                    {% endif %}
+                </div>
+                <div class = "companies_block">
+                    <select id="dis_com_{{ discipline.id }}">
+                        {% for vote in discipline.vote_set.all %}
+                            <option>{{ vote.company.user.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        {% endfor %}
+    </div>>
+    <script>
+        let votes_url = "http://127.0.0.1:8000/api/votes";
+        let companies_url = "http://127.0.0.1:8000/api/votes/companies";
 
+        // Updates percents statistics
+        async function updateStatistics() {
+            let req_url = votes_url + "?pk=" + {{ direction.pk }};
+            // Sending request to the server and getting json as a response
+            response = await fetch(req_url, {
+                method: 'GET',
+                credentials: 'include',
+            });
 
+            let json_data = await response.json();
 
+            for(item in json_data){
+                let perc_tag = document.getElementById("discp_" + json_data[item]["id"]);  // Getting percents cell
 
-<!--        <div class = "container_block">-->
-<!--          <div class = "subject_block"> <p>Алгоритмы и структуры данных</p> <div class =             "percents">95%</div>-->
-<!--          </div>-->
-<!--            <div class = "companies_block">Яндекс <div class = "triangle"></div></div>-->
-<!--        </div>-->
-<!--        <div class = "container_block">-->
-<!--            <div class = "subject_block"> <p>Теория вероятностей и математическая статистика</p> <div class =             "percents">30%</div></div>-->
-<!--            <div class = "companies_block">Касперский <div class = "triangle"></div></div>-->
-<!--        </div>-->
-    </div>
+                perc_tag.innerText = json_data[item]["percents"] + "%"  // Setting updated statistics
+            }
+
+        }
+        // Updates lists of voted companies
+        async function updateVotedCompanies() {
+            let req_url = companies_url + "?pk=" + {{ direction.pk }};
+            // Sending request to the server and getting json as a response
+            response = await fetch(req_url, {
+                method: 'GET',
+                credentials: 'include',
+            });
+
+            let json_data = await response.json();
+
+            for(item in json_data){
+                // Getting company list tag by id
+                let comp_list_tag = document.getElementById("dis_com_" + json_data[item]["id"]);
+
+                let sel_text = "";  // Filling for select tag
+                for(i in json_data[item]["companies_name"]){
+                    sel_text += "<option>" + json_data[item]["companies_name"][i] + "</option>";
+                }
+                comp_list_tag.innerHTML = sel_text; // Setting updated company list
+            };
+        }
+        // Controls checkbox switching
+        async function onChange(event) {
+            const { target } = event;  // Getting clicked checkbox
+
+            let targ_ch_box = target
+            let response;
+
+            let ch_box_splt = targ_ch_box.id.split("_"); // Splitting checkbox id
+
+            let req_data = {
+                direction_id: {{ direction.pk }},
+                discipline_name: ch_box_splt[0],
+            }   // Forming request data
+
+            if (targ_ch_box.checked) {
+                // Sending post request for adding new vote
+                response = await fetch(votes_url, {
+                    method: 'POST',
+                    credentials: 'include',
+                    body: JSON.stringify(req_data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.cookie.split('=')[1]
+                    },
+                });
+            } else {
+                // Sending delete request for deleting current company vote
+                response = await fetch(votes_url, {
+                    method: 'DELETE',
+                    credentials: 'include',
+                    body: JSON.stringify(req_data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.cookie.split('=')[1]
+                    },
+                });
+            }
+            if (response.ok) {
+                await updateStatistics();
+                await updateVotedCompanies();
+            }
+        }
+
+        // Subscripting event handlers on checkboxes change state event
+        {% for discipline in direction.disciplines.all %}
+            tCheckBox = document.getElementById('{{ discipline.name }}_box');
+            tCheckBox.addEventListener('change', onChange);
+        {% endfor %}
+
+        // Refreshes statistics and voted companies lists every second
+        setInterval(function() {
+            updateStatistics();
+            updateVotedCompanies();
+        }, 1000);
+    </script>
 {% endblock %}

@@ -44,6 +44,13 @@ header .container {
 
 .login {
   margin-left: auto;
+  align-items: center;
+  display: flex;
+}
+
+.user_info {
+  display: block;
+  margin-left: 1%;
 }
 
 header .logo {
@@ -51,12 +58,12 @@ header .logo {
 }
 
 .circle {
-  margin-left: auto;
+  margin-right: 5%;
  /*  position: absolute;*/
   right: 50px;
   top: 10px;
   width: 50px; 
   height: 50px; 
-	background: #0079C4;
-	border-radius: 50%;
+  background: #0079C4;
+  border-radius: 50%;
 } 

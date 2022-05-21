@@ -51,7 +51,14 @@
         <div class="login">
           <div class="circle"></div>
           <!--TODO: javascript drop menu-->
-          <a href="login.html">Вход</a>
+          <div class="user_info">
+            {% if user.is_authenticated %}
+              <h2>{{ user.username }}</h2>
+              <a href="{% url 'logout' %}">Выход</a>
+            {% else %}
+              <a href="{% url 'signin' %}">Вход</a>
+            {% endif %}
+          </div>
         </div>
       </div>
        <!--Login end-->

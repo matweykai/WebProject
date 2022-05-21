@@ -33,14 +33,10 @@ section {
   align-items: center;
 
   border-radius: 24px;
-  
-  /* My version */
-  /* background: radial-gradient(#FFFFFF, #9FE8FF);  */
-  /* Figma version */
+
   background: linear-gradient(270deg, rgba(168, 234, 255, 0.9) -1%, rgba(187, 239, 255, 0.9) 18.99%, rgba(255, 255, 255, 0.9) 35.82%, rgba(249, 249, 249, 0.9) 59.49%, rgba(184, 238, 255, 0.9) 81.59%, rgba(159, 232, 255, 0.9) 99.98%);
 
 }
-
 
 .input-data-field {
   width: 65%;
@@ -54,19 +50,6 @@ section {
 
   font-size: 30px;
 }
-
-input[type="checkbox"] {
-  width: 20px;
-	height: 20px;
-  margin-bottom: 20%;
-  margin-left: 0;
-}
-
-.form-radio{
-  font-size: 20px;
-}
-
-
 
 .owl_logo {
   margin: 5%;
