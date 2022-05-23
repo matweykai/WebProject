@@ -78,13 +78,16 @@ section {
   border: none;
 
   text-decoration: none;
-  text-transform: uppercase; 
+  text-transform: uppercase;
+  margin: 10px auto;
 }
 
 .signin_button:hover {
   width: 25%;
   height: 10.5%;  
   box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  margin: 8.5px auto;
+  font-size: 31.5px;
 }
 
 .signin_ref {
