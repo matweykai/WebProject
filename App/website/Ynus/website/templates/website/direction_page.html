@@ -90,6 +90,12 @@
                 comp_list_tag.innerHTML = sel_text; // Setting updated company list
             };
         }
+        function getCookie(name) {
+          let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+          ));
+          return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
         // Controls checkbox switching
         async function onChange(event) {
             const { target } = event;  // Getting clicked checkbox
@@ -104,15 +110,18 @@
                 discipline_name: ch_box_splt[0],
             }   // Forming request data
 
+            csrf_token = getCookie("csrftoken")
+
             if (targ_ch_box.checked) {
                 // Sending post request for adding new vote
+
                 response = await fetch(votes_url, {
                     method: 'POST',
                     credentials: 'include',
                     body: JSON.stringify(req_data),
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRFToken': document.cookie.split('=')[1]
+                        'X-CSRFToken': csrf_token
                     },
                 });
             } else {
@@ -123,7 +132,7 @@
                     body: JSON.stringify(req_data),
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRFToken': document.cookie.split('=')[1]
+                        'X-CSRFToken': csrf_token
                     },
                 });
             }
