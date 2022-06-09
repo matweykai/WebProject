@@ -27,7 +27,9 @@
         {% for discipline in direction.disciplines.all %}
             <div class = "container_block">
                 <div class = "subject_block"> <p>{{ discipline.name }}</p>
-                    <div id="discp_{{ discipline.pk }}" class="percents">{{ discipline.vote_set.all|length|divide:unique_votes_count }}%</div>
+                    <div id="discp_{{ discipline.pk }}" class="percents">
+                        <!--Filled in AJAX-->
+                    </div>
                     {% if user.is_authenticated %}
                         <div class="vote_field">
                             <input type="checkbox" id="{{ discipline.name }}_box"
@@ -40,9 +42,7 @@
                 </div>
                 <div class = "companies_block">
                     <select id="dis_com_{{ discipline.id }}">
-                        {% for vote in discipline.vote_set.all %}
-                            <option>{{ vote.company.user.username }}</option>
-                        {% endfor %}
+                    <!--Filled in AJAX-->
                     </select>
                 </div>
             </div>

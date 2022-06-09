@@ -70,7 +70,7 @@ class VotesView(APIView):
 
                 content.append({
                     "id": discipline.id,
-                    "percents": int((len(discipline.vote_set.all()) / unique_votes_count
+                    "percents": int((len(discipline.vote_set.filter(direction=direction).all()) / unique_votes_count
                     if unique_votes_count != 0 else 0) * 100)
                 })
 
@@ -94,7 +94,7 @@ class VotedCompaniesView(APIView):
             for discipline in direction.disciplines.all():
                 content.append({
                     "id": discipline.id,
-                    "companies_name": [vote.company.user.username for vote in discipline.vote_set.all()]
+                    "companies_name": [vote.company.user.username for vote in discipline.vote_set.filter(direction=direction).all()]
                 })
 
             #print(content)
