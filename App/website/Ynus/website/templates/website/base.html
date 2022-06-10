@@ -49,15 +49,17 @@
 
         <!--Login-->
         <div class="login">
-          <div class="circle"></div>
-          <!--TODO: javascript drop menu-->
-          <div class="user_info">
-            {% if user.is_authenticated %}
-              <h2>{{ user.username }}</h2>
-              <a href="{% url 'logout' %}">Выход</a>
-            {% else %}
-              <a href="{% url 'signin' %}">Вход</a>
-            {% endif %}
+          <div class="login_flex">
+            <div class="circle"></div>
+            <!--TODO: javascript drop menu-->
+            <div class="user_info">
+              {% if user.is_authenticated %}
+                <h2>{{ user.username }}</h2>
+                <a href="{% url 'logout' %}">Выход</a>
+              {% else %}
+                <a href="{% url 'signin' %}">Вход</a>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
