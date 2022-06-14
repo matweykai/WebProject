@@ -1,6 +1,7 @@
 {% extends "website/base.html" %}
 {% load static %}
 {% load index %}
+{% load cache %}
 
 {% block head %}
     <link href="{% static 'css/directions_page.css' %}" rel="stylesheet" type="text/css" />
@@ -9,6 +10,7 @@
 
 
 {% block page %}
+{% cache 300 directions %}
 <section>
     {% for direction in directions %}
 
@@ -29,6 +31,7 @@
     {% endfor %}
             </div>
 </section>
+{% endcache %}
 {% endblock %}
 
 {% block footer %}
