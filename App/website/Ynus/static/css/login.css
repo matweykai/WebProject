@@ -50,7 +50,7 @@ section {
   border-radius: 10px;
 
   margin: 0 auto;
-  margin-bottom: 6%;
+  margin-bottom: 5%;
 
   font-size: 30px;
 }
@@ -97,8 +97,8 @@ section {
 
 .signup_button {
   font-size: 24px;
-  
-  margin-top: 1%;
+  margin-bottom: 3%;
+  margin-top: 2%;
 }
 
 .signup_button a {

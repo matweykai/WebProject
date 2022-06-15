@@ -25,7 +25,7 @@ section {
   transform: translate(-50%, -50%);
   
   width: 50%;
-  height: 75%;
+  height: 80%;
   margin: auto auto;
 
   display: flex;
@@ -40,7 +40,7 @@ section {
 
 .input-data-field {
   width: 65%;
-  height: 10%;
+  height: 8%;
 
   background: #FFF;
   border-radius: 10px;
@@ -52,13 +52,13 @@ section {
 }
 
 .owl_logo {
-  margin: 5%;
+  margin: 3%;
 }
 
 .reg_button {
   height: 8%;
   width: 42%;
-  margin: 8px auto;
+  margin: 14px auto;
   
   font-size: 30px;
  
@@ -74,14 +74,14 @@ section {
   border: none;
 
   text-decoration: none;
-  text-transform: uppercase; 
+  text-transform: uppercase;
 }
 
 .reg_button:hover {
   width: 43%;
   height: 9%;
   box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  margin: 4px auto;
+  margin: 10px auto;
   font-size: 30.8px;
 }
 
@@ -94,6 +94,7 @@ section {
   font-size: 24px;
   
   margin-top: 1%;
+  margin-bottom: 2%;
 }
 
 .signin_button a {
