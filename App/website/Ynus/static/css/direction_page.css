@@ -30,9 +30,12 @@
   height: 20%;
   display: flex;
   align-items: center;
-  margin-left: 7%;
   font-weight: 800;
   font-size: 28px;
+}
+
+.name p {
+    margin: 0 auto;
 }
 
 .intro_text{
@@ -142,6 +145,23 @@
   border-radius: 20px;
   color:white;
   background: #4382CD;
-  text-align: center;
-  padding: 5%;
+  width: 11%;
+}
+
+.vote_field_label {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.visually-hidden {
+    position: absolute;
+    left: -100vw;
+}
+
+.box_image {
+    width: 80%;
+    height: 82%;
+    object-fit: cover;
+    margin-top: 8.2%;
 }

@@ -43,14 +43,38 @@ header .container {
 }
 
 .login {
-  margin-left: auto;
   align-items: center;
-  display: flex;
+  margin-left: auto;
+  height: 60%;
+  padding: 0.3%;
+  border-radius: 15px;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+}
+
+.login_flex {
+    display: flex;
+    align-items: center;
+}
+
+.login_flex > div {
+  margin-right: 10px;
 }
 
 .user_info {
   display: block;
   margin-left: 1%;
+}
+
+.user_info h2 {
+    margin: 5% 0;
+}
+
+.user_info a {
+    text-decoration: none;
+    color: #0079C4;
+    font-weight: 600;
 }
 
 header .logo {

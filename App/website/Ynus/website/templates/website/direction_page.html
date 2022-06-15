@@ -1,22 +1,28 @@
 {% extends "website/base.html" %}
 {% load static %}
 {% load divide %}
+{% load cache %}
 
 {% block head %}
     <link href="{% static 'css/direction_page.css' %}" rel="stylesheet" type="text/css" />
+    <title>{{ direction.name }}</title>
 {% endblock %}
 
 {% block page %}
     <div class = "full_container">
+        {% cache 300 direction_info %}
         <div class="description">
             <div class="direction">
                 <img src="{{ direction.img.url }}">
-                <div class="name">{{ direction.name }}</div>
+                <div class="name">
+                    <p>{{ direction.name }}</p>
+                </div>
             </div>
             <div class = "intro_text">
                 <p>{{ direction.description }}</p>
             </div>
         </div>
+        {% endcache %}
         <div class = "dc_and_comp">
             <div class="disciplines"> Дисциплины, изучаемые на данном направлении: </div>
             <div class="companies"> Компании </div>
@@ -24,22 +30,33 @@
         {% for discipline in direction.disciplines.all %}
             <div class = "container_block">
                 <div class = "subject_block"> <p>{{ discipline.name }}</p>
-                    <div id="discp_{{ discipline.pk }}" class="percents">{{ discipline.vote_set.all|length|divide:unique_votes_count }}%</div>
+                    <div id="discp_{{ discipline.pk }}" class="percents">
+                        <!--Filled in AJAX-->
+                    </div>
                     {% if user.is_authenticated %}
                         <div class="vote_field">
-                            <input type="checkbox" id="{{ discipline.name }}_box"
+                            <input type="checkbox" id="{{ discipline.name }}_box" class="visually-hidden"
                             {% if discipline in votes %}
                             checked
                             {% endif %}
                             >
+                            <label class="vote_field_label" for="{{ discipline.name }}_box">
+                                <img class="box_image" id="{{ discipline.name }}_box_image"
+                                {% if discipline in votes %}
+                                src="{% static 'img/check_box_on.png' %}"
+                                {% else %}
+                                src="{% static 'img/check_box_off.jpg' %}"
+                                {% endif %}
+                                >
+                            </label>
+
+
                         </div>
                     {% endif %}
                 </div>
                 <div class = "companies_block">
                     <select id="dis_com_{{ discipline.id }}">
-                        {% for vote in discipline.vote_set.all %}
-                            <option>{{ vote.company.user.username }}</option>
-                        {% endfor %}
+                    <!--Filled in AJAX-->
                     </select>
                 </div>
             </div>
@@ -89,6 +106,12 @@
                 comp_list_tag.innerHTML = sel_text; // Setting updated company list
             };
         }
+        function getCookie(name) {
+          let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+          ));
+          return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
         // Controls checkbox switching
         async function onChange(event) {
             const { target } = event;  // Getting clicked checkbox
@@ -103,26 +126,30 @@
                 discipline_name: ch_box_splt[0],
             }   // Forming request data
 
+            csrf_token = getCookie("csrftoken")
+
             if (targ_ch_box.checked) {
                 // Sending post request for adding new vote
+                document.getElementById(targ_ch_box.id + "_image").src = "{% static 'img/check_box_on.png' %}"
                 response = await fetch(votes_url, {
                     method: 'POST',
                     credentials: 'include',
                     body: JSON.stringify(req_data),
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRFToken': document.cookie.split('=')[1]
+                        'X-CSRFToken': csrf_token
                     },
                 });
             } else {
                 // Sending delete request for deleting current company vote
+                document.getElementById(targ_ch_box.id + "_image").src = "{% static 'img/check_box_off.jpg' %}"
                 response = await fetch(votes_url, {
                     method: 'DELETE',
                     credentials: 'include',
                     body: JSON.stringify(req_data),
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRFToken': document.cookie.split('=')[1]
+                        'X-CSRFToken': csrf_token
                     },
                 });
             }
@@ -132,11 +159,13 @@
             }
         }
 
+        {% if user.is_authenticated %}
         // Subscripting event handlers on checkboxes change state event
         {% for discipline in direction.disciplines.all %}
             tCheckBox = document.getElementById('{{ discipline.name }}_box');
             tCheckBox.addEventListener('change', onChange);
         {% endfor %}
+        {% endif %}
 
         // Refreshes statistics and voted companies lists every second
         setInterval(function() {

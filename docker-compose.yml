@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  db:
+    image:
+      nouchka/sqlite3:latest
+    volumes:
+      - ./App/website:/root/db
+    environment:
+      - SQLITE3_DB=db.sqlite3
+  web:
+    build: ./App/website
+    command: python3 Ynus/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./App/website:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

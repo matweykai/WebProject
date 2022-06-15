@@ -60,10 +60,15 @@ class DirectionView(generic.DetailView):
 
         all_voted_companies = list()
         # Counting all votes in this direction
+        print(self.get_object())
+        print(self.get_object().vote_set.all())
         for vote in self.get_object().vote_set.all():
             all_voted_companies.append(vote.company.user.username)
 
         context['unique_votes_count'] = len(set(all_voted_companies))
+
+        print(context['unique_votes_count'])
+
         return context
 
 

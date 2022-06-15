@@ -1,16 +1,16 @@
-<!-- TODO: Change links!!! -->
 {% load static %}
 
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'css/header.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/atom_full_density.png' %}">
     {% block head %}
     {% endblock %}
   </head>
@@ -49,15 +49,17 @@
 
         <!--Login-->
         <div class="login">
-          <div class="circle"></div>
-          <!--TODO: javascript drop menu-->
-          <div class="user_info">
-            {% if user.is_authenticated %}
-              <h2>{{ user.username }}</h2>
-              <a href="{% url 'logout' %}">Выход</a>
-            {% else %}
-              <a href="{% url 'signin' %}">Вход</a>
-            {% endif %}
+          <div class="login_flex">
+            <div class="circle"></div>
+            <!--TODO: javascript drop menu-->
+            <div class="user_info">
+              {% if user.is_authenticated %}
+                <h2>{{ user.username }}</h2>
+                <a href="{% url 'logout' %}">Выход</a>
+              {% else %}
+                <a href="{% url 'signin' %}">Вход</a>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>

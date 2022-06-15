@@ -1,8 +1,10 @@
 {% extends "website/base.html" %}
 {% load static %}
+{% load cache %}
 
 {% block head %}
      <link href="{% static 'css/registration.css' %}" rel="stylesheet" type="text/css" />
+     <title>Регистрация</title>
 {% endblock %}
 
 {% block header %}
@@ -19,9 +21,11 @@
         <form method="post" name="reg_form" class="reg_form">
             {% csrf_token %}
             <img class="owl_logo" src="{% static 'img/miet_owl.png' %}" width=168px height=150px>
+            {% cache 300 registration %}
             {% for field in form %}
                 {{ field }}
             {% endfor %}
+            {% endcache %}
             <input class="reg_button" type="submit" value="Зарегистрироваться">
             <div class="signin_button">
                 <a href="{% url 'signin' %}">Войти</a>

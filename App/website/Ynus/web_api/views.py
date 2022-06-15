@@ -6,8 +6,9 @@ from rest_framework.response import Response
 
 
 class VotesView(APIView):
-
+    """API view for working with votes"""
     def post(self, *args, **kwargs):
+        """Add company's vote for some discipline in the direction"""
         try:
             user = self.request.user
 
@@ -28,6 +29,7 @@ class VotesView(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, *args, **kwargs):
+        """Deletes company's vote for the discipline"""
         try:
             user = self.request.user
 
@@ -48,9 +50,10 @@ class VotesView(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, *args, **kwargs):
+        """Returns percent statistics for every discipline in the direction"""
         try:
             direction_id = self.request.query_params.get('pk')
-            print(direction_id)
+            #print(direction_id)
 
             direction = Direction.objects.get(pk=direction_id)
 
@@ -67,7 +70,7 @@ class VotesView(APIView):
 
                 content.append({
                     "id": discipline.id,
-                    "percents": int((len(discipline.vote_set.all()) / unique_votes_count
+                    "percents": int((len(discipline.vote_set.filter(direction=direction).all()) / unique_votes_count
                     if unique_votes_count != 0 else 0) * 100)
                 })
 
@@ -79,6 +82,7 @@ class VotesView(APIView):
 
 
 class VotedCompaniesView(APIView):
+    """API view for getting lists of companies that voted in some direction"""
     def get(self, *args, **kwargs):
         try:
             direction_id = self.request.query_params.get('pk')
@@ -90,10 +94,10 @@ class VotedCompaniesView(APIView):
             for discipline in direction.disciplines.all():
                 content.append({
                     "id": discipline.id,
-                    "companies_name": [vote.company.user.username for vote in discipline.vote_set.all()]
+                    "companies_name": [vote.company.user.username for vote in discipline.vote_set.filter(direction=direction).all()]
                 })
 
-            print(content)
+            #print(content)
             return Response(content, status=status.HTTP_200_OK)
 
         except (Direction.DoesNotExist, Discipline.DoesNotExist) as ex:

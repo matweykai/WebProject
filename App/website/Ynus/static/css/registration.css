@@ -17,7 +17,7 @@ section {
   height: 92%;
 }
 
-.login_form {
+.reg_form {
   /* Vertical alignment */
   position: absolute;
   top: 50%;
@@ -25,7 +25,7 @@ section {
   transform: translate(-50%, -50%);
   
   width: 50%;
-  height: 65%;
+  height: 75%;
   margin: auto auto;
 
   display: flex;
@@ -33,14 +33,10 @@ section {
   align-items: center;
 
   border-radius: 24px;
-  
-  /* My version */
-  /* background: radial-gradient(#FFFFFF, #9FE8FF);  */
-  /* Figma version */
+
   background: linear-gradient(270deg, rgba(168, 234, 255, 0.9) -1%, rgba(187, 239, 255, 0.9) 18.99%, rgba(255, 255, 255, 0.9) 35.82%, rgba(249, 249, 249, 0.9) 59.49%, rgba(184, 238, 255, 0.9) 81.59%, rgba(159, 232, 255, 0.9) 99.98%);
 
 }
-
 
 .input-data-field {
   width: 65%;
@@ -50,7 +46,7 @@ section {
   border-radius: 10px;
 
   margin: 0 auto;
-  margin-bottom: 6%;
+  margin-bottom: 1.7%;
 
   font-size: 30px;
 }
@@ -59,10 +55,10 @@ section {
   margin: 5%;
 }
 
-.signin_button {
-  width: 24%;
-  height: 10%;
-  margin: 0 auto;
+.reg_button {
+  height: 8%;
+  width: 42%;
+  margin: 8px auto;
   
   font-size: 30px;
  
@@ -81,24 +77,26 @@ section {
   text-transform: uppercase; 
 }
 
-.signin_button:hover {
-  width: 25%;
-  height: 10.5%;  
+.reg_button:hover {
+  width: 43%;
+  height: 9%;
   box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  margin: 4px auto;
+  font-size: 30.8px;
 }
 
-.signin_ref {
+.reg_ref {
   display: block;
   margin-top: 7%;
 }
 
-.signup_button {
+.signin_button {
   font-size: 24px;
   
   margin-top: 1%;
 }
 
-.signup_button a {
+.signin_button a {
   color: #0043CC;
   
   text-decoration: underline;
@@ -107,7 +105,7 @@ section {
   transition-duration: 0.1s;
 }
 
-.signup_button a:hover {
+.signin_button a:hover {
   text-decoration: bold;
 
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
