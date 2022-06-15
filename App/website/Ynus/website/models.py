@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-
+from django.core.mail import send_mail
 
 class Company(models.Model):
     """Represents company account in database"""
@@ -17,6 +17,13 @@ def create_company_profile(sender, instance, created, **kwargs):
     """Controls post method for user registration"""
     if created:
         Company.objects.create(user=instance)
+        send_mail(
+            'Регистрация на Ynus',
+            'Поздравляем с регистрацией на нашем сайте!',
+            None,
+            [instance.company.user.email],
+            fail_silently=True,
+        )
 
 
 @receiver(post_save, sender=User)
