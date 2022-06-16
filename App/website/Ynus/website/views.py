@@ -52,7 +52,7 @@ class DirectionView(generic.DetailView):
         if self.request.user.is_authenticated:
             try:
                 votes = self.request.user.company.vote_set.all()
-                disciplines = [vote.discipline for vote in votes]
+                disciplines = [vote.discipline for vote in votes if vote.direction.name == self.get_object().name]
                 context["votes"] = disciplines
 
             except User.company.RelatedObjectDoesNotExist:
