@@ -10,7 +10,6 @@
 
 {% block page %}
     <div class = "full_container">
-        {% cache 300 direction_info %}
         <div class="description">
             <div class="direction">
                 <img src="{{ direction.img.url }}">
@@ -22,7 +21,6 @@
                 <p>{{ direction.description }}</p>
             </div>
         </div>
-        {% endcache %}
         <div class = "dc_and_comp">
             <div class="disciplines"> Дисциплины, изучаемые на данном направлении: </div>
             <div class="companies"> Компании </div>
